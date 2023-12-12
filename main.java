@@ -48,7 +48,7 @@ public class main {
     public main() {
         // İlk ekran
         frame1 = new JFrame("Ekran 1");
-        frame1.setSize(800, 900);
+        frame1.setSize(640, 360);
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JButton ekleButton = new JButton("Ekle");
@@ -77,7 +77,7 @@ public class main {
 
         // İkinci ekran
         frame2 = new JFrame("Ekran 2");
-        frame2.setSize(800, 900);
+        frame2.setSize(640, 640);
         frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JButton donButton = new JButton("Ekran 1'e Dön");
@@ -90,58 +90,89 @@ public class main {
             }
         });
 
-        JTextField ogrenciNoTextField = new JTextField(20);
-        JTextField ogrenciTcTextField = new JTextField(20);
-        JTextField ogrenciAdTextField = new JTextField(20);
-        JTextField ogrenciSoyadTextField = new JTextField(20);
-        JTextField ogrenciSinifTextField = new JTextField(20);
-        JTextField ogrenciOgretmenTextField = new JTextField(20);
-        JTextField ogrenciVeliAdSoyadTextField = new JTextField(20);
+        JTextField ogrenciNoTextField = new JTextField(6);
+        JTextField ogrenciTcTextField = new JTextField(11);
+        JTextField ogrenciAdTextField = new JTextField(50);
+        JTextField ogrenciSoyadTextField = new JTextField(50);
+        JTextField ogrenciSinifTextField = new JTextField(50);
+        JTextField ogrenciOgretmenTextField = new JTextField(50);
+        JTextField ogrenciVeliAdSoyadTextField = new JTextField(50);
 
-        JTextField ogretmenSicilNoTextField = new JTextField(20);
-        JTextField ogretmenAdTextField = new JTextField(20);
-        JTextField ogretmenSoyadTextField = new JTextField(20);
-        JTextField ogretmenAnabransTextField = new JTextField(20);
-        JTextField ogretmenSorumluSinifTextField = new JTextField(20);
+        JTextField ogretmenSicilNoTextField = new JTextField(4);
+        JTextField ogretmenAdTextField = new JTextField(50);
+        JTextField ogretmenSoyadTextField = new JTextField(50);
+        JTextField ogretmenAnabransTextField = new JTextField(50);
+        JTextField ogretmenSorumluSinifTextField = new JTextField(50);
 
-        JTextField veliKayitNoTextField = new JTextField(20);
-        JTextField veliAdTextField = new JTextField(20);
-        JTextField veliSoyadTextField = new JTextField(20);
-        JTextField veliTelefonTextField = new JTextField(20);
+        JTextField veliKayitNoTextField = new JTextField(5);
+        JTextField veliAdTextField = new JTextField(50);
+        JTextField veliSoyadTextField = new JTextField(50);
+        JTextField veliTelefonTextField = new JTextField(50);
 
         JButton kaydetButton = new JButton("Kaydet");
         kaydetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Kullanıcıları listelere ekle
-                Ogrenci ogrenci = new Ogrenci(
-                        Integer.parseInt(ogrenciNoTextField.getText()),
-                        ogrenciTcTextField.getText(),
-                        ogrenciAdTextField.getText(),
-                        ogrenciSoyadTextField.getText(),
-                        ogrenciSinifTextField.getText(),
-                        ogrenciOgretmenTextField.getText(),
-                        ogrenciVeliAdSoyadTextField.getText()
-                );
+                try {
+                    // Convert and retrieve values
+                    int ogrenciNo = Integer.parseInt(ogrenciNoTextField.getText());
+                    if (String.valueOf(ogrenciNo).length() != 6) {
+                        JOptionPane.showMessageDialog(null, "Öğrenci numarası 6 hane olmalıdır.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return; // Exit the method if there is an error
+                    }
+                    String ogrenciTc = ogrenciTcTextField.getText();
+                    if (String.valueOf(ogrenciTc).length() != 11) {
+                        JOptionPane.showMessageDialog(null, "Tc Kimlik numarası 11 hane olmalıdır.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return; // Exit the method if there is an error
+                    }
+                    String ogrenciAd = ogrenciAdTextField.getText();
+                    String ogrenciSoyad = ogrenciSoyadTextField.getText();
+                    String ogrenciSinif = ogrenciSinifTextField.getText();
+                    String ogrenciOgretmen = ogrenciOgretmenTextField.getText();
+                    String ogrenciVeliAdSoyad = ogrenciVeliAdSoyadTextField.getText();
 
-                Ogretmen ogretmen = new Ogretmen(
-                        Integer.parseInt(ogretmenSicilNoTextField.getText()),
-                        ogretmenAdTextField.getText(),
-                        ogretmenSoyadTextField.getText(),
-                        ogretmenAnabransTextField.getText(),
-                        ogretmenSorumluSinifTextField.getText()
-                );
+                    int ogretmenSicilNo = Integer.parseInt(ogretmenSicilNoTextField.getText());
+                    if (String.valueOf(ogretmenSicilNo).length() != 4) {
+                        JOptionPane.showMessageDialog(null, "Öğretmen sicil numarası 4 hane olmalıdır.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return; // Exit the method if there is an error
+                    }
+                    String ogretmenAd = ogretmenAdTextField.getText();
+                    String ogretmenSoyad = ogretmenSoyadTextField.getText();
+                    String ogretmenAnabrans = ogretmenAnabransTextField.getText();
+                    String ogretmenSorumluSinif = ogretmenSorumluSinifTextField.getText();
 
-                Veli veli = new Veli(
-                        Integer.parseInt(veliKayitNoTextField.getText()),
-                        veliAdTextField.getText(),
-                        veliSoyadTextField.getText(),
-                        veliTelefonTextField.getText()
-                );
+                    int veliKayitNo = Integer.parseInt(veliKayitNoTextField.getText());
+                    if (String.valueOf(veliKayitNo).length() != 5) {
+                        JOptionPane.showMessageDialog(null, "Veli kayıt numarası 5 hane olmalıdır.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return; // Exit the method if there is an error
+                    }
+                    String veliAd = veliAdTextField.getText();
+                    String veliSoyad = veliSoyadTextField.getText();
+                    String veliTelefon = veliTelefonTextField.getText();
 
-                ogrenciListesi.add(ogrenci);
-                ogretmenListesi.add(ogretmen);
-                veliListesi.add(veli);
+                    // Create objects
+                    Ogrenci ogrenci = new Ogrenci(ogrenciNo, ogrenciTc, ogrenciAd, ogrenciSoyad, ogrenciSinif, ogrenciOgretmen, ogrenciVeliAdSoyad);
+                    Ogretmen ogretmen = new Ogretmen(ogretmenSicilNo, ogretmenAd, ogretmenSoyad, ogretmenAnabrans, ogretmenSorumluSinif);
+                    Veli veli = new Veli(veliKayitNo, veliAd, veliSoyad, veliTelefon);
+
+                    // Add objects to lists
+                    ogrenciListesi.add(ogrenci);
+                    ogretmenListesi.add(ogretmen);
+                    veliListesi.add(veli);
+
+                    // Clear text fields
+                    clearTextFields();
+                    JOptionPane.showMessageDialog(null, "Kayıt başarıyla oluşturuldu, Ekran1'e dönüp kaydı sorgulayabilirsiniz.", "Bilgilendirme", JOptionPane.INFORMATION_MESSAGE);
+
+
+                } catch (NumberFormatException ex) {
+                    // Handle the exception by displaying a message box
+                    JOptionPane.showMessageDialog(null, "Bir hata oluştu: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+            private void clearTextFields() {
+                // Clear all text fields
                 ogrenciNoTextField.setText("");
                 ogrenciTcTextField.setText("");
                 ogrenciAdTextField.setText("");
@@ -160,10 +191,9 @@ public class main {
                 veliAdTextField.setText("");
                 veliSoyadTextField.setText("");
                 veliTelefonTextField.setText("");
-                
-               
             }
         });
+
 
         JPanel panel2 = new JPanel();
         panel2.setLayout(new GridLayout(18, 2, 10, 10));
@@ -182,7 +212,7 @@ public class main {
         panel2.add(new JLabel("Öğrencinin Velisinin Adı Soyadı:"));
         panel2.add(ogrenciVeliAdSoyadTextField);
 
-        panel2.add(new JLabel("Öğretmen Sicili Numarası(4 Basamak):"));
+        panel2.add(new JLabel("Öğretmen Sicil Numarası(4 Basamak):"));
         panel2.add(ogretmenSicilNoTextField);
         panel2.add(new JLabel("Öğretmen Adı:"));
         panel2.add(ogretmenAdTextField);

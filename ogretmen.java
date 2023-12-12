@@ -17,13 +17,6 @@ class Ogretmen {
         return sicilNo;
     }
 
-    public void setOgretmenSicilNo(int sicilNo) {
-    	 if (String.valueOf(sicilNo).length() == 4) {
-             this.sicilNo = sicilNo;
-         } else {
-             this.sicilNo = 0; 
-         }
-    }
 
     public String getOgretmenAd() {
         return ad;

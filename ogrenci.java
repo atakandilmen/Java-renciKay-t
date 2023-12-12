@@ -21,27 +21,11 @@ class Ogrenci {
         return ogrenciNo;
     }
 
-    public void setOgrenciNo(int ogrenciNo) {
-        if (String.valueOf(ogrenciNo).length() == 6) {
-            this.ogrenciNo = ogrenciNo;
-        } else {
-            
-            this.ogrenciNo = -1; 
-        }
-    }
 
     public String getOgrenciTc() {
         return ogrenciTc;
     }
 
-    public void setOgrenciTc(String ogrenciTc) {
-        if (ogrenciTc.length() == 11) {
-            this.ogrenciTc = ogrenciTc;
-        } else {
-            
-            this.ogrenciTc = "00000000000"; 
-        }
-    }
 
     public String getOgrenciAd() {
         return ad;

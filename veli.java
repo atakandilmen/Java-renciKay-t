@@ -15,13 +15,6 @@
         return kayitNo;
     }
 
-    public void setVeliKayitNo(int kayitNo) {
-        if (String.valueOf(kayitNo).length() == 5) {
-            this.kayitNo = kayitNo;
-        } else {
-            this.kayitNo = -1; 
-        }
-    }
 
     public String getVeliAd() {
         return ad;
